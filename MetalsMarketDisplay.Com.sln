@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalsMarketDisplay.Com", "MetalsMarketDisplay.Com\MetalsMarketDisplay.Com.csproj", "{6EF254A2-7E84-46A5-AA99-45B094F1E002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalsMarketDisplay.Com.Tests", "MetalsMarketDisplay.Com.Tests\MetalsMarketDisplay.Com.Tests.csproj", "{FC3F9914-65DE-4385-9ACF-3294C50AE2D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalsMarketDisplay.Com.Common", "MetalsMarketDisplay.Com.Common\MetalsMarketDisplay.Com.Common.csproj", "{339D5F5A-FC16-43F1-8392-11C6F48C73DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EF254A2-7E84-46A5-AA99-45B094F1E002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF254A2-7E84-46A5-AA99-45B094F1E002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF254A2-7E84-46A5-AA99-45B094F1E002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF254A2-7E84-46A5-AA99-45B094F1E002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC3F9914-65DE-4385-9ACF-3294C50AE2D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3F9914-65DE-4385-9ACF-3294C50AE2D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3F9914-65DE-4385-9ACF-3294C50AE2D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC3F9914-65DE-4385-9ACF-3294C50AE2D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339D5F5A-FC16-43F1-8392-11C6F48C73DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339D5F5A-FC16-43F1-8392-11C6F48C73DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339D5F5A-FC16-43F1-8392-11C6F48C73DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339D5F5A-FC16-43F1-8392-11C6F48C73DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D69C071-4697-4542-9C7D-F0CA74485667}
+	EndGlobalSection
+EndGlobal

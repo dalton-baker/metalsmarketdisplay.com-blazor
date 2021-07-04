@@ -1,0 +1,31 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<div class="page">
+    <MudLayout>
+        <MudAppBar Elevation="1">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(() => NavMenuOpen = !NavMenuOpen)" />
+            <MudSpacer />
+            <div class="title title-lg">Metals Market Display</div>
+            <div class="title title-sm">Metals Market Display</div>
+            <MudSpacer />
+        </MudAppBar>
+        <MudDrawer @bind-Open="@NavMenuOpen" Elevation="1">
+            <MudDrawerHeader Style="justify-content: center">
+                @*Put an image here*@
+            </MudDrawerHeader>
+            <MudNavMenu>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.ShowChart" Href="">Charts</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Info" Href="about">About</MudNavLink>
+            </MudNavMenu>
+        </MudDrawer>
+        <MudMainContent>
+            <MudContainer Class="mt-2 ml-2 mr-2" Style="width: auto; max-width: none;">
+                @Body
+            </MudContainer>
+        </MudMainContent>
+    </MudLayout>
+</div>

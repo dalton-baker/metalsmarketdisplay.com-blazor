@@ -1,0 +1,93 @@
+body {
+    background-color: #1e1e1e;
+    font-size: 100%;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.main-div{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.metal-card{
+    display: flex;
+    font-weight: bold;
+    background-color: rgba(255,255,255,.09);
+    border-radius: 5px;
+    margin: 5px 5px 0px 5px;
+    padding: 5px;
+}
+
+.metal-card:hover{
+    background-color: rgba(255,255,255,.12);
+    transition: 0.3s;
+}
+
+.metal-card-lrgname{
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 24px;
+    flex: 1;
+}
+
+.metal-card-prices-lrgname
+{
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: right;
+    width: 75px;
+}
+
+.metal-card-smname{
+    text-align: left;
+    color: rgba(255,255,255,.60);
+    font-size: 13px;
+    flex: 1;
+}
+
+.metal-card-prices-smname
+{
+    display: flex;
+    flex-direction: row;
+    color: #FFFFFF;
+    font-size: 19px;
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+  
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.down-color{
+    color: #db3344 !important;
+}
+
+.up-color{
+    color: #549267 !important;
+}
+
+.link-card{
+    background-color: rgba(255,255,255,.09);
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    transition: 0.3s;
+    margin: 5px 5px 0px 5px;
+    text-align: center;
+}
+
+.link-card:hover{
+    background-color: rgba(255,255,255,.16);
+}
