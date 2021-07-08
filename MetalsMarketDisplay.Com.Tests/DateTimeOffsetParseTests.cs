@@ -2,7 +2,6 @@ using MetalsMarketDisplay.Com.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
@@ -41,11 +40,13 @@ namespace MetalsMarketDisplay.Com.Tests
             MiscMarkets item = JsonConvert.DeserializeObject<MiscMarkets>(json);
 
             TestContext.WriteLine(item.UpdateTime.ToString());
-
-            foreach(MiscMarket market in item.Market)
-            {
-                TestContext.WriteLine($"     {market.Name, -10}: {market.Price,10} {market.Change,10} {market.Percent,10}%");
-            }
+            TestContext.WriteLine($"   USD:  {GetMiscCandleString(item.USD)}");
+            TestContext.WriteLine($"   SPX:  {GetMiscCandleString(item.SPX)}");
+            TestContext.WriteLine($"   COMP: {GetMiscCandleString(item.COMP)}");
+            TestContext.WriteLine($"   DJIA: {GetMiscCandleString(item.DJIA)}");
+            TestContext.WriteLine($"   BTC:  {GetMiscCandleString(item.BTC)}");
+            TestContext.WriteLine($"   LTC:  {GetMiscCandleString(item.LTC)}");
+            TestContext.WriteLine($"   ETH:  {GetMiscCandleString(item.ETH)}");
         }
 
         [TestMethod]
@@ -55,12 +56,22 @@ namespace MetalsMarketDisplay.Com.Tests
             string json = r.ReadToEnd();
             MetalsMarkets item = JsonConvert.DeserializeObject<MetalsMarkets>(json);
 
-            TestContext.WriteLine($"{item.MarketStatus}  :  {item.UpdateTime}");
+            TestContext.WriteLine($"{item.MarketOpen}  :  {item.UpdateTime}");
+            TestContext.WriteLine($"   Gold:      {GetCandleString(item.Gold)}");
+            TestContext.WriteLine($"   Silver:    {GetCandleString(item.Silver)}");
+            TestContext.WriteLine($"   Platinum:  {GetCandleString(item.Platinum)}");
+            TestContext.WriteLine($"   Palladium: {GetCandleString(item.Palladium)}");
 
-            foreach (MetalsMarket market in item.Market)
-            {
-                TestContext.WriteLine($"     {market.Name,-10}:{market.Ask,10}{market.Bid,10}{market.High,10}{market.Low,10}{market.Change,10}{market.Percent,10}%");
-            }
+        }
+
+        private string GetCandleString(Candle candle)
+        {
+            return $"{candle.Ask, 10}{candle.Bid,10}{candle.Change,10}{candle.Percent,10}%{candle.High,10}{candle.Low,10}";
+        }
+
+        private string GetMiscCandleString(MiscCandle candle)
+        {
+            return $"{candle.Price,10}{candle.Change,10}{candle.Percent,10}";
         }
     }
 

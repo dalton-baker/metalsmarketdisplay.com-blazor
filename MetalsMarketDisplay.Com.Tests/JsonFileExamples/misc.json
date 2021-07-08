@@ -1,47 +1,38 @@
 {
-  "updateTime": "07/04/2021 20:10:19 +00:00",
-  "market": [
-    {
-      "name": "USD",
-      "price": "92.24",
-      "change": "-0.35",
-      "percent": "-0.38"
-    },
-    {
-      "name": "Dow Jones",
-      "price": "34,786.35",
-      "change": "152.82",
-      "percent": "0.44"
-    },
-    {
-      "name": "S&P 500",
-      "price": "4,352.34",
-      "change": "32.40",
-      "percent": "0.75"
-    },
-    {
-      "name": "NASDAQ",
-      "price": "14,639.33",
-      "change": "116.95",
-      "percent": "0.81"
-    },
-    {
-      "name": "Bitcoin",
-      "price": "35,459.00",
-      "change": "743",
-      "percent": "2.14"
-    },
-    {
-      "name": "Ethereum",
-      "price": "2,328.50",
-      "change": "108.95",
-      "percent": "4.91"
-    },
-    {
-      "name": "Litecoin",
-      "price": "143.73",
-      "change": "4.01",
-      "percent": "2.87"
-    }
-  ]
+  "updateTime": "07/04/2021 21:16:39 +00:00",
+  "usd": {
+    "price": "92.24",
+    "change": "-0.35",
+    "percent": "-0.38"
+  },
+  "djia": {
+    "price": "34,786.35",
+    "change": "152.82",
+    "percent": "0.44"
+  },
+  "spx": {
+    "price": "4,352.34",
+    "change": "32.40",
+    "percent": "0.75"
+  },
+  "comp": {
+    "price": "14,639.33",
+    "change": "116.95",
+    "percent": "0.81"
+  },
+  "btc": {
+    "price": "35,562.00",
+    "change": "20",
+    "percent": "0.06"
+  },
+  "eth": {
+    "price": "2,353.42",
+    "change": "3.00",
+    "percent": "0.13"
+  },
+  "ltc": {
+    "price": "146.19",
+    "change": "0.12",
+    "percent": "0.08"
+  }
 }

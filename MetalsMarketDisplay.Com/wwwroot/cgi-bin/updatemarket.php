@@ -1,9 +1,8 @@
 <?php
 # curl.php
 
-class MarketData
+class Candle
 {
-    public $name;
     public $ask;
     public $bid;
     public $change;
@@ -11,9 +10,8 @@ class MarketData
     public $low;
     public $high;
 
-    public function __construct($name, $ask, $bid, $change, $percent, $low, $high)
+    public function __construct($ask, $bid, $change, $percent, $low, $high)
     {
-        $this->name = $name;
         $this->ask = $ask;
         $this->bid = $bid;
         $this->change = $change;
@@ -23,33 +21,63 @@ class MarketData
     }
 }
 
-class CompactMarketData
+class MetalsMarkets
 {
-    public $name;
+    public $marketOpen;
+    public $updateTime;
+    public $silver;
+    public $gold;
+    public $platinum;
+    public $palladium;
+}
+
+class SimpleCandle
+{
+    public $ask;
+    public $bid;
+
+    public function __construct($ask, $bid)
+    {
+        $this->ask = $ask;
+        $this->bid = $bid;
+    }
+}
+
+class SimpleMetalsMarkets
+{
+    public $updateTime;
+    public $silver;
+    public $gold;
+    public $platinum;
+    public $palladium;
+}
+
+
+
+class MiscCandle
+{
     public $price;
     public $change;
     public $percent;
 
-    public function __construct($name, $price, $change, $percent)
+    public function __construct($price, $change, $percent)
     {
-        $this->name = $name;
         $this->price = $price;
         $this->change = $change;
         $this->percent = $percent;
     }
 }
 
-class MetalsMarketData
-{
-    public $marketStatus;
-    public $updateTime;
-    public $market = array();
-}
-
-class MiscMarketData
+class MiscMarkets
 {
     public $updateTime;
-    public $market = array();
+    public $usd;
+    public $djia;
+    public $spx;
+    public $comp;
+    public $btc;
+    public $eth;
+    public $ltc;
 }
 
 if ($_GET["auth"] != "3832d15f-8e27-4eea-a24a-0b9712fd1bc1") {
@@ -147,17 +175,36 @@ if ($_GET["auth"] != "3832d15f-8e27-4eea-a24a-0b9712fd1bc1") {
             !empty($askPTmatch[1]) and !empty($bidPTmatch[1]) and !empty($changePTmatch[1]) and !empty($percentPTmatch[1]) and !empty($lowPTmatch[1]) and !empty($highPTmatch[1]) and
             !empty($askPDmatch[1]) and !empty($bidPDmatch[1]) and !empty($changePDmatch[1]) and !empty($percentPDmatch[1]) and !empty($lowPDmatch[1]) and !empty($highPDmatch[1])
         ) {
-            $metalsMarketData = new MetalsMarketData;
-            $metalsMarketData->marketStatus = $marketStatus[1];
+            $metalsMarketData = new MetalsMarkets;
+            if($marketStatus[1] == "OPEN") {
+                $metalsMarketData->marketOpen = "true";
+            }
+            else {
+                $metalsMarketData->marketOpen = "false";
+            }
             $metalsMarketData->updateTime = gmdate("m/d/Y H:i:s") . " +00:00";
-            array_push($metalsMarketData->market, new MarketData("Silver", $askAGmatch[1], $bidAGmatch[1], $changeAGmatch[1], $percentAGmatch[1], $lowAGmatch[1], $highAGmatch[1]));
-            array_push($metalsMarketData->market, new MarketData("Gold", $askAUmatch[1], $bidAUmatch[1], $changeAUmatch[1], $percentAUmatch[1], $lowAUmatch[1], $highAUmatch[1]));
-            array_push($metalsMarketData->market, new MarketData("Platinum", $askPTmatch[1], $bidPTmatch[1], $changePTmatch[1], $percentPTmatch[1], $lowPTmatch[1], $highPTmatch[1]));
-            array_push($metalsMarketData->market, new MarketData("Palladium", $askPDmatch[1], $bidPDmatch[1], $changePDmatch[1], $percentPDmatch[1], $lowPDmatch[1], $highPDmatch[1]));
+            $metalsMarketData->silver = new Candle($askAGmatch[1], $bidAGmatch[1], $changeAGmatch[1], $percentAGmatch[1], $lowAGmatch[1], $highAGmatch[1]);
+            $metalsMarketData->gold = new Candle($askAUmatch[1], $bidAUmatch[1], $changeAUmatch[1], $percentAUmatch[1], $lowAUmatch[1], $highAUmatch[1]);
+            $metalsMarketData->platinum = new Candle($askPTmatch[1], $bidPTmatch[1], $changePTmatch[1], $percentPTmatch[1], $lowPTmatch[1], $highPTmatch[1]);
+            $metalsMarketData->palladium = new Candle($askPDmatch[1], $bidPDmatch[1], $changePDmatch[1], $percentPDmatch[1], $lowPDmatch[1], $highPDmatch[1]);
 
-            $metalsFile = fopen("../market-data/metals.json", "w") or die("Unable to open file!");
+            $simpleMetalsMarkets = new SimpleMetalsMarkets;
+            $simpleMetalsMarkets->updateTime = gmdate("m/d/Y H:i:s") . " +00:00";
+            $simpleMetalsMarkets->silver = new SimpleCandle($askAGmatch[1], $bidAGmatch[1]);
+            $simpleMetalsMarkets->gold = new SimpleCandle($askAUmatch[1], $bidAUmatch[1]);
+            $simpleMetalsMarkets->platinum = new SimpleCandle($askPTmatch[1], $bidPTmatch[1]);
+            $simpleMetalsMarkets->palladium = new SimpleCandle($askPDmatch[1], $bidPDmatch[1]);
+
+
+            $metalsFile = fopen("../market-data/metals.json", "w") or die("Unable to open file metals.json");
             fwrite($metalsFile, json_encode($metalsMarketData, JSON_UNESCAPED_SLASHES));
             fclose($metalsFile);
+            
+            $groupFileName = "../market-data/metals-24-hour/" . gmdate("Hi") . ".json";
+            $metalsFile = fopen($groupFileName, "w") or die("Unable to open file " . $groupFileName);
+            fwrite($metalsFile, json_encode($simpleMetalsMarkets, JSON_UNESCAPED_SLASHES));
+            fclose($metalsFile);
+            
 
             $returnInfo .= "Metals data updated succesfully at " . $metalsMarketData->updateTime;
         }
@@ -175,17 +222,17 @@ if ($_GET["auth"] != "3832d15f-8e27-4eea-a24a-0b9712fd1bc1") {
            !empty($ethMatches[1]) and !empty($ethMatches[2]) and !empty($ethMatches[3]) and
            !empty($ltcMatches[1]) and !empty($ltcMatches[2]) and !empty($ltcMatches[3]) )
         {
-            $miscMarketData = new MiscMarketData;
+            $miscMarketData = new MiscMarkets;
             $miscMarketData->updateTime = gmdate("m/d/Y H:i:s") . " +00:00";
-            array_push($miscMarketData->market, new CompactMarketData("USD", $usdMatches[1], $usdMatches[2], $usdMatches[3]));
-            array_push($miscMarketData->market, new CompactMarketData("Dow Jones", $djiaMatches[1], $djiaMatches[2], $djiaMatches[3]));
-            array_push($miscMarketData->market, new CompactMarketData("S&P 500", $spxMatches[1], $spxMatches[2], $spxMatches[3]));
-            array_push($miscMarketData->market, new CompactMarketData("NASDAQ", $compMatches[1], $compMatches[2], $compMatches[3]));
-            array_push($miscMarketData->market, new CompactMarketData("Bitcoin", $btcMatches[1] . ".00", $btcMatches[2], $btcMatches[3]));
-            array_push($miscMarketData->market, new CompactMarketData("Ethereum", $ethMatches[1], $ethMatches[2], $ethMatches[3]));
-            array_push($miscMarketData->market, new CompactMarketData("Litecoin", $ltcMatches[1], $ltcMatches[2], $ltcMatches[3]));
+            $miscMarketData->usd  = new MiscCandle($usdMatches[1], $usdMatches[2], $usdMatches[3]);
+            $miscMarketData->djia = new MiscCandle($djiaMatches[1], $djiaMatches[2], $djiaMatches[3]);
+            $miscMarketData->spx  = new MiscCandle($spxMatches[1], $spxMatches[2], $spxMatches[3]);
+            $miscMarketData->comp = new MiscCandle($compMatches[1], $compMatches[2], $compMatches[3]);
+            $miscMarketData->btc  = new MiscCandle($btcMatches[1] . ".00", $btcMatches[2], $btcMatches[3]);
+            $miscMarketData->eth  = new MiscCandle($ethMatches[1], $ethMatches[2], $ethMatches[3]);
+            $miscMarketData->ltc  = new MiscCandle($ltcMatches[1], $ltcMatches[2], $ltcMatches[3]);
 
-            $miscFile = fopen("../market-data/misc.json", "w") or die("Unable to open file!");
+            $miscFile = fopen("../market-data/misc.json", "w") or die("Unable to open file misc.json");
             fwrite($miscFile, json_encode($miscMarketData, JSON_UNESCAPED_SLASHES));
             fclose($miscFile);
 
