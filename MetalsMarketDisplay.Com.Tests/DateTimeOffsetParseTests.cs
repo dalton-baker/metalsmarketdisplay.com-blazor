@@ -24,12 +24,20 @@ namespace MetalsMarketDisplay.Com.Tests
 
             TestContext.WriteLine(result.ToString());
 
-
-
             dateString = @"07/04/2021 20:10:19 +00:00";
 
             result = DateTimeOffset.Parse(dateString);
             TestContext.WriteLine(result.ToString());
+        }
+
+        [TestMethod]
+        public void DateTimeStringParseTest()
+        {
+            string dateString = @"2021-07-08 01:30:03";
+
+            DateTimeOffset result = DateTimeOffset.Parse(dateString);
+
+            TestContext.WriteLine(result.AddHours(-2).ToUniversalTime().ToString());
         }
 
         [TestMethod]
@@ -64,12 +72,32 @@ namespace MetalsMarketDisplay.Com.Tests
 
         }
 
-        private string GetCandleString(Candle candle)
+        [TestMethod]
+        public void MetalsHistoryFileRead()
+        {
+            using StreamReader r = new("JsonFileExamples/history.json");
+            string json = r.ReadToEnd();
+            MetalsHistory history = JsonConvert.DeserializeObject<MetalsHistory>(json);
+
+            TestContext.WriteLine($"Silver:");
+            foreach (SimpleCandle candle in history.Silver)
+            {
+                TestContext.WriteLine($"{candle.UpdateTime.AddHours(-2).ToUniversalTime(),30}:{candle.Ask,10}{candle.Bid,10}");
+            }
+
+            TestContext.WriteLine($"Gold:");
+            foreach (SimpleCandle candle in history.Gold)
+            {
+                TestContext.WriteLine($"{candle.UpdateTime.AddHours(-2).ToUniversalTime(), 30}:{candle.Ask,10}{candle.Bid,10}");
+            }
+        }
+
+        private static string GetCandleString(Candle candle)
         {
             return $"{candle.Ask, 10}{candle.Bid,10}{candle.Change,10}{candle.Percent,10}%{candle.High,10}{candle.Low,10}";
         }
 
-        private string GetMiscCandleString(MiscCandle candle)
+        private static string GetMiscCandleString(MiscCandle candle)
         {
             return $"{candle.Price,10}{candle.Change,10}{candle.Percent,10}";
         }

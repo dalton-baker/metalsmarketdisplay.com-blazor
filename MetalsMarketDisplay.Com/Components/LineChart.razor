@@ -1,0 +1,20 @@
+﻿<svg height="@Height " width="@Width" viewBox="0 0 @SvgAspectWidth @SvgAspectHeight" preserveAspectRatio="none">
+
+    <defs>
+        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 50 0 L 0 0 0 50" fill="#000000" stroke="#e5e5e5" stroke-width="1" />
+        </pattern>
+    </defs>
+
+    <linearGradient id="@GradientName" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:@(@LineColor + "80");stop-opacity:1"></stop>
+        <stop offset="100%" style="stop-color:white;stop-opacity:0"></stop>
+    </linearGradient>
+
+    <rect x="0" width="@SvgAspectWidth" height="@SvgAspectHeight" fill="#000000" stroke="gray" />
+
+    <polyline points="@GradientPoints" fill="url(#@GradientName)" style="stroke-width:0" />
+    <polyline points="@LinePoints" stroke="@LineColor" style="fill:none;stroke-width:3" />
+
+    Sorry, your browser does not support inline SVG.
+</svg>

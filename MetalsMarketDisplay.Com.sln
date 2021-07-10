@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalsMarketDisplay.Com", "MetalsMarketDisplay.Com\MetalsMarketDisplay.Com.csproj", "{6EF254A2-7E84-46A5-AA99-45B094F1E002}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetalsMarketDisplay.Com", "MetalsMarketDisplay.Com\MetalsMarketDisplay.Com.csproj", "{6EF254A2-7E84-46A5-AA99-45B094F1E002}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalsMarketDisplay.Com.Tests", "MetalsMarketDisplay.Com.Tests\MetalsMarketDisplay.Com.Tests.csproj", "{FC3F9914-65DE-4385-9ACF-3294C50AE2D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetalsMarketDisplay.Com.Tests", "MetalsMarketDisplay.Com.Tests\MetalsMarketDisplay.Com.Tests.csproj", "{FC3F9914-65DE-4385-9ACF-3294C50AE2D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalsMarketDisplay.Com.Common", "MetalsMarketDisplay.Com.Common\MetalsMarketDisplay.Com.Common.csproj", "{339D5F5A-FC16-43F1-8392-11C6F48C73DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetalsMarketDisplay.Com.Common", "MetalsMarketDisplay.Com.Common\MetalsMarketDisplay.Com.Common.csproj", "{339D5F5A-FC16-43F1-8392-11C6F48C73DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

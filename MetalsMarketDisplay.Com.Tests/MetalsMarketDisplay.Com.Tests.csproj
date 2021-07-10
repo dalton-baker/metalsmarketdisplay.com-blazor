@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="JsonFileExamples\history.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="JsonFileExamples\metals.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

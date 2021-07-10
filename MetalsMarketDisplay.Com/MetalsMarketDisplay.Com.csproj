@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\market-data\history.json" />
     <Content Remove="wwwroot\market-data\metals.json" />
     <Content Remove="wwwroot\market-data\misc.json" />
   </ItemGroup>
@@ -22,12 +23,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\market-data\history.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="wwwroot\market-data\metals.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="wwwroot\market-data\misc.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MetalsMarketDisplay.Com.Common\MetalsMarketDisplay.Com.Common.csproj" />
   </ItemGroup>
 
 </Project>
